@@ -1,0 +1,23 @@
+# install required packages
+PKG wazuh-dashboard
+
+# copy files
+CMD cp /usr/local/etc/wazuh-dashboard/opensearch_dashboards.yml /usr/local/etc/opensearch-dashboards/
+
+CMD mkdir -p /usr/local/etc/opensearch-dashboards/certs
+CMD cp /root/wazuh-gen-certs/wazuh-certificates/dashboard.pem /usr/local/etc/opensearch-dashboards/certs/
+CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/dashboard.pem
+CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/dashboard.pem
+CMD cp /root/wazuh-gen-certs/wazuh-certificates/dashboard-key.pem /usr/local/etc/opensearch-dashboards/certs/
+CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/dashboard-key.pem
+CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/dashboard-key.pem
+CMD cp /root/wazuh-gen-certs/wazuh-certificates/root-ca.pem /usr/local/etc/opensearch-dashboards/certs/
+CMD chmod 640 /usr/local/etc/opensearch-dashboards/certs/root-ca.pem
+CMD chown www:www /usr/local/etc/opensearch-dashboards/certs/root-ca.pem
+
+# enable and start service
+SYSRC opensearch_dashboards_enable=YES
+
+SERVICE opensearch-dashboards start
+
+RDR tcp 5601 5601
