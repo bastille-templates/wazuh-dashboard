@@ -1,19 +1,19 @@
 #
-# OpenSearch Dashboard configuration for work like a Wazuh Dashboard Server
+# OpenSearch Dashboard configuration for Wazuh Dashboard Server
 #
 
 server.port: 5601
-#server.port: 443
-server.host: "%{SERVER_IP}"
-opensearch.hosts: ["https://localhost:9200"]
+server.host: "10.0.0.30"
+
+opensearch.hosts: ["https://10.0.0.10:9200"]
 opensearch.username: "admin"
-opensearch.password: "%%OPENSEARCH_ADMIN_PASS%%"
+opensearch.password: "adminpass"
 
 server.ssl.enabled: true
 server.ssl.certificate: "/usr/local/etc/opensearch-dashboards/certs/dashboard.pem"
 server.ssl.key: "/usr/local/etc/opensearch-dashboards/certs/dashboard-key.pem"
 
-opensearch.ssl.certificateAuthorities: [ "/usr/local/etc/opensearch-dashboards/certs/root-ca.pem" ]
+opensearch.ssl.certificateAuthorities: "/usr/local/etc/opensearch-dashboards/certs/root-ca.pem"
 opensearch.ssl.verificationMode: certificate
 opensearch.requestHeadersWhitelist: [authorization, securitytenant]
 opensearch_security.multitenancy.enabled: false
@@ -21,15 +21,14 @@ opensearch_security.readonly_mode.roles: [kibana_read_only]
 
 opensearchDashboards.branding:
    logo:
-     defaultUrl: "https://people.freebsd.org/~acm/ports/wazuh/freebsd-logo.png"
-#     darkModeUrl: "https://%{SERVER_IP}:5601/ui/logos/freebsd-logo.png"
+      defaultUrl: "https://people.freebsd.org/~acm/ports/wazuh/freebsd-logo.png"
+      darkModeUrl: "https://10.0.0.30:5601/ui/logos/freebsd-logo.png"
    mark:
-     defaultUrl: "https://people.freebsd.org/~acm/ports/wazuh/freebsd-mark-logo.png"
-#     darkModeUrl: "https://%{SERVER_IP}:5601/ui/logos/freebsd-mark-logo.png"
+      defaultUrl: "https://people.freebsd.org/~acm/ports/wazuh/freebsd-mark-logo.png"
+      darkModeUrl: "https://10.0.0.30:5601/ui/logos/freebsd-mark-logo.png"
    loadingLogo:
-     defaultUrl: "https://people.freebsd.org/~acm/ports/wazuh/freebsd-mark-logo.png"
-#     darkModeUrl: "https://%{SERVER_IP}:5601/ui/logos/freebsd-mark-logo.png"
-#   faviconUrl: ""
+      defaultUrl: "https://people.freebsd.org/~acm/ports/wazuh/freebsd-mark-logo.png"
+      darkModeUrl: "https://10.0.0.30:5601/ui/logos/freebsd-mark-logo.png"
    applicationTitle: "on FreeBSD"
 
 uiSettings.overrides.defaultRoute: /app/wazuh

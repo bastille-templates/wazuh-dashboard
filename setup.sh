@@ -1,4 +1,5 @@
 bastille create wazuh-dashboard 14.2-RELEASE 10.0.0.30
+bastille cmd wazuh-dashboard echo "10.0.0.30 dashboard.wazuh" > /etc/hosts
 bastille cmd wazuh-dashboard sed -e "s|quarterly|latest|g" -i.bak /etc/pkg/FreeBSD.conf
 bastille cmd wazuh-dashboard sed -e "s|#PermitRootLogin no|PermitRootLogin yes|g" -i.bak /etc/ssh/sshd_config
 bastille cmd wazuh-dashboard sed -e "s|#PasswordAuthentication no|PasswordAuthentication yes|g" -i.bak /etc/ssh/sshd_config
